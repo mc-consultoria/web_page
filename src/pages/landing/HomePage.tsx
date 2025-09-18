@@ -26,11 +26,9 @@ import mc1 from "../../assets/mc1.jpeg";
 import team2 from "../../assets/mc2.jpeg";
 import team3 from "../../assets/mc3.jpeg";
 
-import testimonial1 from "../../assets/testimonial-1.jpg";
-import testimonial2 from "../../assets/testimonial-2.jpg";
-import testimonial3 from "../../assets/testimonial-3.jpg";
+
 import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
-import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 
 export default function HomePage() {
   const facts = [
@@ -59,36 +57,8 @@ export default function HomePage() {
 
   // Estado para modal y testimonios
   const [isOpen, setIsOpen] = useState(false);
-  const [current, setCurrent] = useState(0);
+  
 
-  const testimonials = [
-    {
-      img: testimonial1,
-      text: "Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed.",
-      name: "Client Name 1",
-      profession: "Profession 1",
-    },
-    {
-      img: testimonial2,
-      text: "Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit.",
-      name: "Client Name 2",
-      profession: "Profession 2",
-    },
-    {
-      img: testimonial3,
-      text: "Rebum justo sea clita magna ut diam sit et amet stet eos sed clita.",
-      name: "Client Name 3",
-      profession: "Profession 3",
-    },
-  ];
-
-  const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrent((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  };
 
   return (
     <>
@@ -503,9 +473,16 @@ export default function HomePage() {
     {/* --- Projects (reemplaza las imgs que usaban rutas de texto) */}
     <section className="bg-[#01395c] py-16 px-6">
       {(() => {
-        const [selected, setSelected] = useState(null);
+        // ✅ Definimos el tipo explícito para que TypeScript sepa qué contiene "selected"
+        type Project = {
+          title: string;
+          image: string;
+          description: string;
+        };
 
-        const projects = [
+        const [selected, setSelected] = useState<Project | null>(null);
+
+        const projects: Project[] = [
           {
             title: "Curso de Código S-K 1300  -  SOUTHERN PERU COPPER CORPORATION",
             image: project1,
@@ -608,6 +585,7 @@ export default function HomePage() {
       })()}
     </section>
     {/* --- end Projects --- */}
+
 
 
 

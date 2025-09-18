@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
-import { FaChartBar, FaDatabase, FaHammer, FaIndustry, FaProjectDiagram } from "react-icons/fa";
+import {
+  FaChartBar,
+  FaDatabase,
+  FaHammer,
+  FaIndustry,
+  FaProjectDiagram,
+} from "react-icons/fa";
 import servicio1 from "../../assets/servicio1.png";
 import servicio2 from "../../assets/servicio2.png";
 import servicio3 from "../../assets/servicio3.png";
 import servicio4 from "../../assets/servicio4.png";
 import servicio5 from "../../assets/servicio5.png";
-
 
 const services = [
   {
@@ -46,25 +51,33 @@ const services = [
 ];
 
 export default function ServicesPage() {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [visibleItems, setVisibleItems] = useState([]);
+  // ✅ Tipamos el estado para evitar "never[]"
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [visibleItems, setVisibleItems] = useState<string[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setVisibleItems((prev) => [...prev, entry.target.dataset.index]);
+            // ✅ Forzamos el cast a HTMLElement para acceder a dataset
+            const index = (entry.target as HTMLElement).dataset.index ?? "";
+            setVisibleItems((prev) => [...prev, index]);
           }
         });
       },
       { threshold: 0.2 }
     );
-    document.querySelectorAll(".service-card").forEach((el) => observer.observe(el));
+
+    document
+      .querySelectorAll(".service-card")
+      .forEach((el) => observer.observe(el));
+
     return () => observer.disconnect();
   }, []);
 
-  const toggleService = (index) => {
+  // ✅ Tipamos el parámetro "index"
+  const toggleService = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
@@ -88,9 +101,9 @@ export default function ServicesPage() {
           {services.map((service, index) => (
             <div
               key={index}
-              data-index={index}
+              data-index={index.toString()}
               className={`service-card bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-700 hover:shadow-xl ${
-                visibleItems.includes(String(index))
+                visibleItems.includes(index.toString())
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-6"
               }`}
@@ -140,10 +153,11 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        {/* Texto "Más de 15 años" más sobrio y elegante */}
+        {/* Texto "Más de 15 años" */}
         <div className="mt-20 text-center">
           <h3 className="text-2xl md:text-4xl font-bold text-sky-600 mb-4">
-            Liderando proyectos que marcan la diferencia en la minería          </h3>
+            Liderando proyectos que marcan la diferencia en la minería
+          </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Nuestra trayectoria y compromiso nos convierten en un aliado confiable
             para proyectos mineros en Latinoamérica, siempre enfocados en la calidad
