@@ -6,7 +6,6 @@ import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {/* 👇 Ahora la app está envuelta en BrowserRouter con basename */}
     <BrowserRouter basename="/web_page">
       <App />
     </BrowserRouter>
