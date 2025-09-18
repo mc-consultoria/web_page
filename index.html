@@ -2,19 +2,14 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <!-- Usa import.meta.env.BASE_URL para respetar /web_page en producción -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="%VITE_BASE_URL%logo.png"
-    />
+    <!-- 👇 Ruta relativa para que Vite la procese y respete el base -->
+    <link rel="icon" type="image/png" sizes="512x512" href="./logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MC CONSULTORES</title>
   </head>
   <body>
     <div id="root"></div>
-    <!-- Usa ruta relativa para que Vite la reescriba en el build -->
+    <!-- 👇 Import correcto para que Vite lo transforme en build -->
     <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>
