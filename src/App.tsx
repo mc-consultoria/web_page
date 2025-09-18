@@ -1,17 +1,17 @@
 import "./App.css";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PublicLayout from "./components/layout/PublicLayout";
 
 import HomePage from "./pages/landing/HomePage";
 import AboutPage from "./pages/landing/AboutPage";
 import ServicesPage from "./pages/landing/ServicesPage";
 import ContactPage from "./pages/landing/ContactPage";
-import WhatsAppButton from "./components/whatsapp"; // <-- PascalCase
+import WhatsAppButton from "./components/whatsapp";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <WhatsAppButton />
       <Routes>
         {/* Redirección automática de "/" a "/inicio" */}
@@ -25,7 +25,7 @@ function App() {
           <Route path="/contacto" element={<ContactPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
