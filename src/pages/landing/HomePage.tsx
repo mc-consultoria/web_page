@@ -614,7 +614,7 @@ export default function HomePage() {
           { img: team6, name: "Luis Maldonado",        role: "Ing. Geólogo, Consultor Senior de Geotecnia",                                               linkedin: "https://www.linkedin.com/in/luis-maldonado-zorrilla-a7b34322/" },
           { img: team7, name: "Juan Rondinel",        role: "Ing. de Minas, Consultor Senior de Planeamiento, CP MAusIMM 3000013",                                               linkedin: "https://www.linkedin.com/in/juandavidrondinel/" },
           { img: team8, name: "Arnold Chávez",        role: "Ing. de Minas, Consultor Senior de Planeamiento",                                               linkedin: "https://www.linkedin.com/in/arnold-chavez-atalaya-928302121/" },
-          { img: team9, name: "Sofia Quispe",        role: "Ing. de Sistemas, Análitica de Datos y Automatización de Proceos",                                               linkedin: "https://www.linkedin.com/in/sofia-quispe-salas/" },
+          { img: team9, name: "Sofia Quispe",        role: "Ing. de Sistemas, Análitica de Datos y Automatización de Procesos",                                               linkedin: "https://www.linkedin.com/in/sofia-quispe-salas/" },
         ];
 
         const Card = ({ c }: any) => (
