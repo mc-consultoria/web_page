@@ -1,5 +1,5 @@
 import { FaEnvelope, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
-import contactImage from "../../assets/service-1.jpg"; // Reemplaza con tu imagen
+import contactImage from "../../assets/service-1.jpg"; 
 
 export default function ContactSection() {
   return (

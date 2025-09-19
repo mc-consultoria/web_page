@@ -11,8 +11,8 @@ import videoBg from "../../assets/video3.mp4";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import CountUp from "react-countup";
-import about1 from "../../assets/about-1.jpeg";
-import about2 from "../../assets/about-2.jpeg";
+import about1 from "../../assets/team2.jpg";
+import about2 from "../../assets/about-team.jpg";
 import section3 from "../../assets/section3.png";
 import service1 from "../../assets/service-1.jpg";
 import service2 from "../../assets/service-2.jpg";
@@ -25,6 +25,13 @@ import project3 from "../../assets/project-3.png";
 import mc1 from "../../assets/mc1.jpeg";
 import team2 from "../../assets/mc2.jpeg";
 import team3 from "../../assets/mc3.jpeg";
+import team4 from "../../assets/mc4.jpg";
+import team5 from "../../assets/team5.png";
+import team6 from "../../assets/team6.png";
+import team7 from "../../assets/team7.png";
+import team8 from "../../assets/team8.jpg";
+import team9 from "../../assets/team9.jpg";
+
 
 
 import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
@@ -100,24 +107,26 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="flex flex-col gap-10 w-full">
+            <div className="flex flex-col gap-6 md:gap-8 w-full">
               <motion.img
                 src={about1}
                 alt="About 1"
-                className="w-full rounded-lg shadow-lg object-cover"
+                className="w-full h-48 sm:h-56 md:h-64 lg:h-72 rounded-lg shadow-lg object-cover"
                 initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
+                loading="lazy"
               />
               <motion.img
                 src={about2}
                 alt="About 2"
-                className="w-full rounded-lg shadow-lg object-cover"
+                className="w-full h-48 sm:h-56 md:h-64 lg:h-72 rounded-lg shadow-lg object-cover"
                 initial={{ x: 100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
+                loading="lazy"
               />
             </div>
 
@@ -132,7 +141,8 @@ export default function HomePage() {
                 MC CONSULTORES
               </h2>
               <p className="text-lg text-gray-700 mb-6 text-justify">
-                Somos una consultora <b>especializada en el sector minero</b>. ...
+                Somos una consultora <b>especializada en el sector minero</b> Enfocada en brindar soluciones técnicas, estratégicas y operativas para optimizar la toma de decisiones a lo largo del ciclo operativo minero.
+                Ponemos toda nuestra experiencia a su disposición mediante servicios que ayudarán a mejorar el control de sus proyectos de exploración y los procesos de la mina. Estamos alineados a los estándares internacionales y nos posicionamos como su aliado estratégico. 
               </p>
 
               {/* Especialidades */}
@@ -499,8 +509,7 @@ export default function HomePage() {
             title: "Automatización y análitica en BD geológica",
             image: project3,
             description:
-              "Se realizó una integracíon y análisis de data geológica para automatizar el proceso e identificar puntos de mejora para importar automaticamente en un software de modelamiento",
-          },
+              "Se realizó la integración y el análisis de datos geológicos para automatizar el proceso e identificar puntos de mejora, con el fin de importarlos automáticamente en un software de modelado."          },
         ];
 
         return (
@@ -591,121 +600,98 @@ export default function HomePage() {
 
 
 
-    {/* ==== TEAM SECTION ==== */}
-<section className="py-20 bg-white">
-  <div className="max-w-3xl mx-auto text-center mb-12">
-    <p className="uppercase font-semibold text-blue-500 mb-2">
-      Nuestro Equipo
-    </p>
-    <h1 className="text-4xl font-bold text-gray-900">
-      Conoce a nuestros Asociados
-    </h1>
-  </div>
+    {/* ==== TEAM SECTION */}
+    <section className="py-16 md:py-20 bg-white">
+      {(() => {
+        const [showAll, setShowAll] = useState(false);
 
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-    {/* ---- Card 1 ---- */}
-    <div className="shadow-lg rounded-lg overflow-hidden">
-      <img
-        src={mc1}
-        alt="Marcos Calderon"
-        className="w-full h-80 object-cover"
-      />
+        const cards = [
+          { img: mc1,   name: "Marcos Calderon",  role: "CEO & Founder",                                              linkedin: "https://www.linkedin.com/in/marcos-s-calder%C3%B3n-aran%C3%ADbar-a07283140/" },
+          { img: team2, name: "Armando Simón",    role: "Ph.D. Ing. Geólogo y Geofísico",                             linkedin: "https://www.linkedin.com/in/armando-sim%C3%B3n-phd-pgeo-5781513b/" },
+          { img: team5, name: "Adalberto Rivadeneira",    role: "Consultor Senior Procesos Metalúrgicos",                   linkedin: "https://www.linkedin.com/in/adalberto-rivadeneira-48ab24b8/" },
+          { img: team3, name: "Astrid Flores", role: "Ing. Geóloga Mina QAQC y Desarrollo Corporativo",                        linkedin: "https://www.linkedin.com/in/carmen-astrid-flores-ramirez-87086339/" },
+          { img: team4, name: "Cecilia Ildefonso",        role: "Ing. Geóloga, Consultora en Modelamiento Geológico",                                               linkedin: "https://pe.linkedin.com/in/cecilia-i-40a36355" },
+          { img: team6, name: "Luis Maldonado",        role: "Ing. Geólogo, Consultor Senior de Geotecnia",                                               linkedin: "https://www.linkedin.com/in/luis-maldonado-zorrilla-a7b34322/" },
+          { img: team7, name: "Juan Rondinel",        role: "Ing. de Minas, Consultor Senior de Planeamiento, CP MAusIMM 3000013",                                               linkedin: "https://www.linkedin.com/in/juandavidrondinel/" },
+          { img: team8, name: "Arnold Chávez",        role: "Ing. de Minas, Consultor Senior de Planeamiento",                                               linkedin: "https://www.linkedin.com/in/arnold-chavez-atalaya-928302121/" },
+          { img: team9, name: "Sofia Quispe",        role: "Ing. de Sistemas, Análitica de Datos y Automatización de Proceos",                                               linkedin: "https://www.linkedin.com/in/sofia-quispe-salas/" },
+        ];
 
-      <div className="flex items-center bg-gray-100 p-4 relative group overflow-hidden">
-        {/* Rectángulo azul con ícono contacto */}
-        <div className="flex-shrink-0 w-20 h-20 bg-blue-500 flex items-center justify-center relative z-10 rounded-md">
-          <FaEnvelope className="text-white text-2xl" />
-        </div>
-
-        {/* Texto */}
-        <div className="flex-1 pl-4 relative z-10">
-          <h5 className="font-bold text-lg">Marcos Calderon</h5>
-          <span className="text-blue-500 text-sm">CEO & Founder </span>
-        </div>
-
-        {/* Franja azul translúcida con LinkedIn */}
-        <div className="absolute inset-0 bg-blue-600/50 flex items-center translate-x-0 md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-500 ease-out z-20">
-          <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center ml-[20px]">
-            <a
-              href="https://www.linkedin.com/in/marcos-s-calder%C3%B3n-aran%C3%ADbar-a07283140/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center"
-            >
-              <FaLinkedinIn className="text-white text-lg" />
-            </a>
+        const Card = ({ c }: any) => (
+          <div className="shadow-lg rounded-lg overflow-hidden">
+            <img
+              src={c.img}
+              alt={c.name}
+              className="w-full h-56 sm:h-60 md:h-64 object-cover"
+              loading="lazy"
+            />
+            <div className="flex items-center bg-gray-100 p-3 sm:p-4 relative group overflow-hidden">
+              {/* Bloque con ícono */}
+              <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-blue-500 flex items-center justify-center relative z-10 rounded-md">
+                <FaEnvelope className="text-white text-xl sm:text-2xl" />
+              </div>
+              {/* Texto */}
+              <div className="flex-1 pl-3 sm:pl-4 relative z-10">
+                <h5 className="font-bold text-base sm:text-lg">{c.name}</h5>
+                <span className="text-blue-500 text-xs sm:text-sm">{c.role}</span>
+              </div>
+              {/* Overlay LinkedIn */}
+              {c.linkedin && (
+                <div className="absolute inset-0 bg-blue-600/50 flex items-center translate-x-0 md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-500 ease-out z-20">
+                  <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center ml-[20px]">
+                    <a
+                      href={c.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 flex items-center justify-center"
+                    >
+                      <FaLinkedinIn className="text-white text-base sm:text-lg" />
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+        );
 
-    {/* ---- Card 2 ---- */}
-    <div className="shadow-lg rounded-lg overflow-hidden">
-      <img
-        src={team2}
-        alt="Armando Simón"
-        className="w-full h-80 object-cover"
-      />
+        return (
+          <>
+            <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
+              <p className="uppercase font-semibold text-blue-500 mb-2">Nuestro Equipo</p>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Conoce a nuestros Asociados</h1>
+            </div>
 
-      <div className="flex items-center bg-gray-100 p-4 relative group overflow-hidden">
-        <div className="flex-shrink-0 w-20 h-20 bg-blue-500 flex items-center justify-center relative z-10 rounded-md">
-          <FaEnvelope className="text-white text-2xl" />
-        </div>
-        <div className="flex-1 pl-4 relative z-10">
-          <h5 className="font-bold text-lg">Armando Simón</h5>
-          <span className="text-blue-500 text-sm">
-            Ph.D. Ingeniero Geólogo y Geofísico
-          </span>
-        </div>
-        <div className="absolute inset-0 bg-blue-600/50 flex items-center translate-x-0 md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-500 ease-out z-20">
-          <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center ml-[20px]">
-            <a
-              href="https://www.linkedin.com/in/armando-sim%C3%B3n-phd-pgeo-5781513b/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center"
+            {/* 3 visibles */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+              {cards.slice(0, 3).map((c, i) => (
+                <Card key={`team-top-${i}`} c={c} />
+              ))}
+            </div>
+
+            {/* 9 ocultas (u el resto) */}
+            <div
+              className={`${showAll ? "grid" : "hidden"} grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto mt-6 md:mt-8`}
             >
-              <FaLinkedinIn className="text-white text-lg" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+              {cards.slice(3).map((c, i) => (
+                <Card key={`team-rest-${i}`} c={c} />
+              ))}
+            </div>
 
-    {/* ---- Card 3 ---- */}
-    <div className="shadow-lg rounded-lg overflow-hidden">
-      <img
-        src={team3}
-        alt="Peter Farel"
-        className="w-full h-80 object-cover"
-      />
-
-      <div className="flex items-center bg-gray-100 p-4 relative group overflow-hidden">
-        <div className="flex-shrink-0 w-20 h-20 bg-blue-500 flex items-center justify-center relative z-10 rounded-md">
-          <FaEnvelope className="text-white text-2xl" />
-        </div>
-        <div className="flex-1 pl-4 relative z-10">
-          <h5 className="font-bold text-lg">Astrid Flores</h5>
-          <span className="text-blue-500 text-sm">
-            Geóloga Mina QAQC y Desarrollo Corporativo
-          </span>
-        </div>
-        <div className="absolute inset-0 bg-blue-600/50 flex items-center translate-x-0 md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-500 ease-out z-20">
-          <div className="flex-shrink-0 w-20 h-20 flex items-center justify-center ml-[20px]">
-            <a
-              href="https://www.linkedin.com/in/carmen-astrid-flores-ramirez-87086339/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center"
-            >
-              <FaLinkedinIn className="text-white text-lg" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            {/* Botón ver más / ver menos */}
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setShowAll((v) => !v)}
+                className="px-5 py-2.5 rounded-md bg-[#01395c] text-white text-sm md:text-base hover:bg-[#02507f] transition"
+                aria-expanded={showAll}
+              >
+                {showAll ? "Ver menos" : "Ver más"}
+              </button>
+            </div>
+          </>
+        );
+      })()}
+    </section>
+    {/* ==== TEAM SECTION */}
 
 
 

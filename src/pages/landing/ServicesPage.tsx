@@ -51,7 +51,7 @@ const services = [
 ];
 
 export default function ServicesPage() {
-  // ✅ Tipamos el estado para evitar "never[]"
+ 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [visibleItems, setVisibleItems] = useState<string[]>([]);
 
@@ -60,7 +60,7 @@ export default function ServicesPage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // ✅ Forzamos el cast a HTMLElement para acceder a dataset
+            
             const index = (entry.target as HTMLElement).dataset.index ?? "";
             setVisibleItems((prev) => [...prev, index]);
           }
@@ -76,7 +76,7 @@ export default function ServicesPage() {
     return () => observer.disconnect();
   }, []);
 
-  // ✅ Tipamos el parámetro "index"
+
   const toggleService = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                   : "opacity-0 translate-y-6"
               }`}
             >
-              {/* Header con icono */}
+              {/* Header*/}
               <div
                 className="flex items-center justify-between p-6 cursor-pointer hover:bg-blue-50 transition-colors"
                 onClick={() => toggleService(index)}

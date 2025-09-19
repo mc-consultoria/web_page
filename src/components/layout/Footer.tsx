@@ -40,9 +40,9 @@ export default function Footer() {
             <h3 className="font-semibold text-lg mb-4">Servicios</h3>
             <ul className="space-y-2 text-gray-300">
               <li>Consultoría Minera</li>
-              <li>Estudios de Factibilidad</li>
-              <li>Gestión Ambiental</li>
-              <li>Seguridad Industrial</li>
+              <li>Reconciliación Minera</li>
+              <li>Base de Datos QAQC</li>
+              <li>Estimación de Recursos y reservas</li>
             </ul>
           </div>
 
