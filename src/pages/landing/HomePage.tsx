@@ -616,7 +616,7 @@ export default function HomePage() {
           { img: team8, name: "Arnold Chávez",        role: "Ing. de Minas, Consultor Senior de Planeamiento",                                               linkedin: "https://www.linkedin.com/in/arnold-chavez-atalaya-928302121/" },
           { img: team9, name: "Sofia Quispe",        role: "Ing. de Sistemas, Análitica de Datos y Automatización de Procesos",                                               linkedin: "https://www.linkedin.com/in/sofia-quispe-salas/" },
         ];
-
+        {/*Modificacion asociados */}
         const Card = ({ c }: any) => (
           <div className="shadow-lg rounded-lg overflow-hidden">
             <img
