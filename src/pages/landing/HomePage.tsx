@@ -195,7 +195,7 @@ export default function HomePage() {
                       size={20}
                       style={{ color: "#3f9dc8" }}
                     />
-                    Mine-to-Mill
+                    Capacitación en Códigos Mineros y Control de Calidad
                   </p>
                 </div>
               </div>

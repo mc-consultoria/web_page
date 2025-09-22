@@ -42,9 +42,9 @@ const services = [
     icon: <FaProjectDiagram />,
   },
   {
-    title: "Mine-to-Mill",
+    title: "Capacitación en Códigos Mineros y Control de Calidad",
     description:
-      "Optimizamos el flujo de todo el proceso: perforación, voladura, transporte y molienda, maximizando el rendimiento y reduciendo costos.",
+       "Brindamos formación especializada en códigos mineros y sistemas de control de calidad, asegurando el cumplimiento normativo y la mejora continua de los procesos operativos.",
     image: servicio5,
     icon: <FaIndustry />,
   },
