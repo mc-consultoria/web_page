@@ -32,40 +32,119 @@ import team7 from "../../assets/team7.png";
 import team8 from "../../assets/team8.jpg";
 import team9 from "../../assets/team9.jpg";
 
+import perumin1 from "../../assets/perumin1.jpg";
+import perumin2 from "../../assets/perumin2.jpg";
+import perumin3 from "../../assets/perumin3.jpg";
+import perumin4 from "../../assets/perumin4.jpg";
 
+import continental1 from "../../assets/continental1.jpg";
+import continental2 from "../../assets/continental2.jpg";
+
+import unsa1 from "../../assets/unsa1.jpg";
+import unsa2 from "../../assets/unsa2.jpg";
+import unsa3 from "../../assets/unsa3.jpg";
+import unsa4 from "../../assets/unsa4.jpg";
+
+import pucp from "../../assets/pucp.png";
 
 import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 
-
 export default function HomePage() {
   const facts = [
-    {
-      icon: Award,
-      value: 10,
-      label: "Especialidades",
-    },
-    {
-      icon: Users,
-      value: 15,
-      label: "Miembros del Equipo",
-    },
-    {
-      icon: Briefcase,
-      value: 3,
-      label: "Alianzas Estratégicas",
-    },
-    {
-      icon: TrendingUp,
-      value: 10,
-      prefix: "+",
-      label: "Proyectos en Marcha",
-    },
+    { icon: Award, value: 10, label: "Especialidades" },
+    { icon: Users, value: 15, label: "Miembros del Equipo" },
+    { icon: Briefcase, value: 3, label: "Alianzas Estratégicas" },
+    { icon: TrendingUp, value: 10, prefix: "+", label: "Proyectos en Marcha" },
   ];
 
   // Estado para modal y testimonios
   const [isOpen, setIsOpen] = useState(false);
-  
 
+  // Noticias
+  const [newsFilter, setNewsFilter] = useState("Todo");
+
+  // Modal galería
+  const [selectedNews, setSelectedNews] = useState(null);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const newsItems = [
+    {
+      id: 1,
+      category: "Perumin",
+      type: "Feria / Networking",
+      date: "Sep 2025",
+      city: "Arequipa, PE",
+      title: "Participación en PERUMIN 37",
+      summary: "Participación activa en actividades técnicas y networking.",
+      attendees: 1200,
+      images: [perumin1, perumin2, perumin3, perumin4],
+      image: perumin1,
+      link: "",
+      highlight: true,
+      points: [
+        "Rondas de networking con proveedores y empresas mineras",
+        "Charlas técnicas sobre innovación y productividad",
+        "Recopilación de insights para proyectos en operación",
+      ],
+    },
+    {
+      id: 2,
+      category: "Universidades",
+      type: "Ponencia",
+      date: "Nov 2025",
+      city: "Arequipa, PE",
+      title: "Ponencia en universidad continental: CONTIMIN",
+      summary:
+        "Exposición de casos y buenas prácticas en reconciliación minera.",
+      points: [
+        "Desafíos actuales de la industria",
+        "Importancia de la estimación de recursos y reservas",
+        "Innovación en procesos y el valor de una formación técnica con propósito.",
+      ],
+      attendees: 180,
+      image: continental1,
+      images: [continental1,continental2], 
+      link: "",
+      highlight: false,
+    },
+    {
+      id: 3,
+      category: "Universidades",
+      type: "Ponencia",
+      date: "Dic 2025",
+      city: "Arequipa, PE",
+      title: "Asistencia  LXXIX Aniversario de la Facultad de Geología, Geofísica y Minas - UNSA",
+      summary:
+        "Crecimiento Minero en el Perú, Arequipa como cluster de innovación y desarrollo territorial.",
+      points: [
+        "Consolidación de Arequipa como hub minero del sur del Perú",
+        "Innovación tecnológica aplicada a la reconciliación minera",
+        "Impacto del crecimiento minero en el desarrollo territorial",
+        "Articulación universidad–empresa–Estado para impulsar investigación aplicada",
+      ],
+      attendees: 350,
+      image: unsa1,
+      images: [unsa1,unsa2,unsa3,unsa4], 
+      link: "",
+      highlight: false,
+    },
+    {
+      id: 4,
+      category: "Universidades",
+      type: "Ponencia",
+      date: "Feb 2026",
+      city: "Lima, PE",
+      title: "Ponencia en Centrum PUCP Business Consulting Club (CPBCC)",
+      summary:
+        "Distinción por aporte en actividades técnicas y difusión de conocimiento aplicado al sector.",
+      points: ["La Minería 4.0 no crea valor por sí sola", "El valor surge cuando la geología se integra estratégicamente", "Permite planificar, explotar y reconciliar con precisión y datos confiables."],
+      attendees: 60,
+      image: pucp,
+      images: [pucp], 
+      link: "",
+      highlight: false,
+    },
+  ];
 
   return (
     <>
@@ -88,17 +167,17 @@ export default function HomePage() {
           <h3 className="text-3xl md:text-5xl font-bold text-white leading-snug">
             Optimizar decisiones <br /> en el ciclo minero
           </h3>
-          <a 
-            href="https://wa.me/51932432031?text=Hola%2C%20quiero%20más%20información%20sobre%20sus%20servicios." 
-            target="_blank" 
+          <a
+            href="https://wa.me/51932432031?text=Hola%2C%20quiero%20más%20información%20sobre%20sus%20servicios."
+            target="_blank"
             rel="noopener noreferrer"
           >
-          <button
-            className="mt-6 px-8 py-3 font-semibold text-white transition-colors rounded-full text-lg"
-            style={{ backgroundColor: "#3f9dc8" }}
-          >
-            Agendar reunión
-          </button>
+            <button
+              className="mt-6 px-8 py-3 font-semibold text-white transition-colors rounded-full text-lg"
+              style={{ backgroundColor: "#3f9dc8" }}
+            >
+              Agendar reunión
+            </button>
           </a>
         </div>
       </section>
@@ -131,72 +210,41 @@ export default function HomePage() {
             </div>
 
             <div>
-              <p
-                className="uppercase font-semibold mb-2"
-                style={{ color: "#3f9dc8" }}
-              >
+              <p className="uppercase font-semibold mb-2" style={{ color: "#3f9dc8" }}>
                 Nosotros
               </p>
-              <h2 className="text-5xl font-bold text-gray-900 mb-6">
-                MC CONSULTORES
-              </h2>
+              <h2 className="text-5xl font-bold text-gray-900 mb-6">MC CONSULTORES</h2>
               <p className="text-lg text-gray-700 mb-6 text-justify">
-                Somos una consultora <b>especializada en el sector minero</b> Enfocada en brindar soluciones técnicas, estratégicas y operativas para optimizar la toma de decisiones a lo largo del ciclo operativo minero.
-                Ponemos toda nuestra experiencia a su disposición mediante servicios que ayudarán a mejorar el control de sus proyectos de exploración y los procesos de la mina. Estamos alineados a los estándares internacionales y nos posicionamos como su aliado estratégico. 
+                Somos una consultora <b>especializada en el sector minero</b> Enfocada en
+                brindar soluciones técnicas, estratégicas y operativas para optimizar la
+                toma de decisiones a lo largo del ciclo operativo minero. Ponemos toda
+                nuestra experiencia a su disposición mediante servicios que ayudarán a
+                mejorar el control de sus proyectos de exploración y los procesos de la
+                mina. Estamos alineados a los estándares internacionales y nos
+                posicionamos como su aliado estratégico.
               </p>
 
               {/* Especialidades */}
               <div className="flex items-start mb-8">
-                <div
-                  className="text-white p-4 text-center"
-                  style={{ backgroundColor: "#3f9dc8" }}
-                >
+                <div className="text-white p-4 text-center" style={{ backgroundColor: "#3f9dc8" }}>
                   <h5 className="font-bold">Conoce</h5>
                   <h5 className="font-bold">Nuestras</h5>
                   <br />
                   <h5 className="text-white font-bold">Especialidades</h5>
                 </div>
                 <div className="ml-6 text-gray-700 text-lg">
-                  <p className="flex items-center mb-2">
-                    <CheckCircle
-                      className="mr-2"
-                      size={20}
-                      style={{ color: "#3f9dc8" }}
-                    />
-                    Reconciliación Minera
-                  </p>
-                  <p className="flex items-center mb-2">
-                    <CheckCircle
-                      className="mr-2"
-                      size={20}
-                      style={{ color: "#3f9dc8" }}
-                    />
-                    Consultoría
-                  </p>
-                  <p className="flex items-center mb-2">
-                    <CheckCircle
-                      className="mr-2"
-                      size={20}
-                      style={{ color: "#3f9dc8" }}
-                    />
-                    Base de datos QA-QC
-                  </p>
-                  <p className="flex items-center mb-2">
-                    <CheckCircle
-                      className="mr-2"
-                      size={20}
-                      style={{ color: "#3f9dc8" }}
-                    />
-                    Estimación de recursos y reservas
-                  </p>
-                  <p className="flex items-center mb-2">
-                    <CheckCircle
-                      className="mr-2"
-                      size={20}
-                      style={{ color: "#3f9dc8" }}
-                    />
-                    Capacitación en Códigos Mineros y Control de Calidad
-                  </p>
+                  {[
+                    "Reconciliación Minera",
+                    "Consultoría",
+                    "Base de datos QA-QC",
+                    "Estimación de recursos y reservas",
+                    "Capacitación en Códigos Mineros y Control de Calidad",
+                  ].map((t) => (
+                    <p key={t} className="flex items-center mb-2">
+                      <CheckCircle className="mr-2" size={20} style={{ color: "#3f9dc8" }} />
+                      {t}
+                    </p>
+                  ))}
                 </div>
               </div>
 
@@ -216,6 +264,7 @@ export default function HomePage() {
                     </h5>
                   </div>
                 </div>
+
                 <div className="flex items-center">
                   <div
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
@@ -225,9 +274,7 @@ export default function HomePage() {
                   </div>
                   <div className="ml-4">
                     <p className="text-gray-500 text-sm">Cel</p>
-                    <h5 className="text-lg text-gray-900 font-semibold">
-                      +51 932432031
-                    </h5>
+                    <h5 className="text-lg text-gray-900 font-semibold">+51 932432031</h5>
                   </div>
                 </div>
               </div>
@@ -235,6 +282,238 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ✅ MODAL GALERÍA */}
+      {selectedNews && (
+        <div
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4"
+          onClick={() => setSelectedNews(null)}
+        >
+          <div
+            className="bg-white rounded-2xl w-full max-w-4xl p-6 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Cerrar */}
+            <button
+              onClick={() => setSelectedNews(null)}
+              className="absolute top-4 right-4 text-gray-600 hover:text-black text-xl"
+              aria-label="Cerrar"
+            >
+              ✕
+            </button>
+
+            <h3 className="text-2xl font-bold mb-4">{selectedNews.title}</h3>
+
+            {/* Imagen principal */}
+            <img
+              src={selectedNews.images[currentImage]}
+              alt={`${selectedNews.title} - ${currentImage + 1}`}
+              className="w-full h-[240px] sm:h-[400px] object-cover rounded-xl"
+              loading="lazy"
+            />
+
+            {/* Controles */}
+            <div className="flex items-center justify-between mt-4 gap-3">
+              <button
+                onClick={() =>
+                  setCurrentImage((prev) =>
+                    prev === 0 ? selectedNews.images.length - 1 : prev - 1
+                  )
+                }
+                className="px-4 py-2 rounded-xl border text-sm font-semibold hover:bg-gray-50"
+              >
+                ← Anterior
+              </button>
+
+              <span className="text-sm text-gray-500">
+                {currentImage + 1} / {selectedNews.images.length}
+              </span>
+
+              <button
+                onClick={() =>
+                  setCurrentImage((prev) =>
+                    prev === selectedNews.images.length - 1 ? 0 : prev + 1
+                  )
+                }
+                className="px-4 py-2 rounded-xl border text-sm font-semibold hover:bg-gray-50"
+              >
+                Siguiente →
+              </button>
+            </div>
+
+            {/* Miniaturas */}
+            <div className="flex gap-3 mt-4 overflow-x-auto pb-1">
+              {selectedNews.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentImage(i)}
+                  className={`shrink-0 rounded-lg border-2 ${
+                    currentImage === i ? "border-[#3f9dc8]" : "border-transparent"
+                  }`}
+                  title={`Foto ${i + 1}`}
+                >
+                  <img src={img} alt={`thumb-${i}`} className="h-20 w-28 object-cover rounded-lg" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* News / Fechas clave */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+            <div>
+              <p className="uppercase font-semibold mb-2" style={{ color: "#3f9dc8" }}>
+                Noticias
+              </p>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                Fechas clave y participaciones
+              </h2>
+              <p className="text-gray-600 mt-3 max-w-2xl">
+                Participación en ponencias, congresos, ferias y actividades del sector.
+                Aquí se registran los hitos más relevantes.
+              </p>
+            </div>
+
+            {/* Filtro */}
+            <div className="w-full md:w-auto">
+              <div className="bg-white rounded-2xl shadow-sm border p-2 flex gap-2 overflow-x-auto">
+                {["Todo", "Universidades", "Perumin"].map(
+                  (tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => setNewsFilter(tag)}
+                      className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition
+                        ${newsFilter === tag ? "text-white" : "text-gray-700 hover:bg-gray-100"}`}
+                      style={{
+                        backgroundColor: newsFilter === tag ? "#3f9dc8" : "transparent",
+                      }}
+                    >
+                      {tag}
+                    </button>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Línea vertical */}
+            <div className="hidden lg:block lg:col-span-2">
+              <div className="sticky top-24">
+                <div className="h-[520px] w-[3px] rounded-full bg-gray-200 relative mx-auto">
+                  <div
+                    className="absolute top-0 left-0 w-[3px] h-[35%] rounded-full"
+                    style={{ backgroundColor: "#3f9dc8" }}
+                  />
+                </div>
+                <p className="text-center text-sm text-gray-500 mt-4">Línea de tiempo</p>
+              </div>
+            </div>
+
+            {/* Cards */}
+            <div className="lg:col-span-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {newsItems
+                  .filter((n) => newsFilter === "Todo" || n.category === newsFilter)
+                  .map((item, idx) => (
+                    <motion.article
+                      key={item.id}
+                      initial={{ y: 25, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 0.6, delay: idx * 0.04 }}
+                      onClick={() => {
+                        setSelectedNews(item);
+                        setCurrentImage(0);
+                      }}
+                      className="cursor-pointer bg-white rounded-2xl shadow-sm border overflow-hidden hover:shadow-md transition"
+                    >
+                      {/* Imagen */}
+                      <div className="relative">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="h-44 w-full object-cover"
+                          loading="lazy"
+                        />
+                        <div className="absolute top-3 left-3 flex gap-2">
+                          <span
+                            className="text-xs font-bold px-3 py-1 rounded-full text-white"
+                            style={{ backgroundColor: "#3f9dc8" }}
+                          >
+                            {item.category}
+                          </span>
+                          {item.highlight && (
+                            <span className="text-xs font-bold px-3 py-1 rounded-full bg-black/70 text-white">
+                              Destacado
+                            </span>
+                          )}
+                        </div>
+
+                        {item.images?.length > 1 && (
+                          <div className="absolute bottom-3 right-3 bg-black/60 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                            {item.images.length} fotos
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Contenido */}
+                      <div className="p-6">
+                        <div className="flex items-center justify-between gap-3 mb-3">
+                          <p className="text-sm text-gray-500 font-medium">
+                            {item.date} • {item.city}
+                          </p>
+                          <span className="text-xs text-gray-500 border rounded-full px-3 py-1">
+                            {item.type}
+                          </span>
+                        </div>
+
+                        <h3 className="text-xl font-bold text-gray-900 leading-snug">
+                          {item.title}
+                        </h3>
+
+                        <p className="text-gray-600 mt-3 text-sm leading-relaxed">
+                          {item.summary}
+                        </p>
+
+                        {/* Bullets */}
+                        {item.points?.length ? (
+                          <ul className="mt-4 space-y-2">
+                            {item.points.slice(0, 3).map((p, i) => (
+                              <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                                <CheckCircle size={18} style={{ color: "#3f9dc8" }} />
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+
+                        {/* CTA */}
+                        <div className="mt-6 flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-2 text-sm text-gray-500">
+                            <Users size={18} />
+                            <span>{item.attendees} asistentes</span>
+                          </div>
+
+                          <span className="text-sm font-semibold" style={{ color: "#3f9dc8" }}>
+                            Ver fotos →
+                          </span>
+                        </div>
+                      </div>
+                    </motion.article>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{/* Universidades y otra carta de noticias*/}
+
 
       {/* Stats / Facts Section */}
       <section className="w-full py-20" style={{ backgroundColor: "#01395C" }}>
@@ -483,7 +762,6 @@ export default function HomePage() {
     {/* --- Projects (reemplaza las imgs que usaban rutas de texto) */}
     <section className="bg-[#01395c] py-16 px-6">
       {(() => {
-        // ✅ Definimos el tipo explícito para que TypeScript sepa qué contiene "selected"
         type Project = {
           title: string;
           image: string;
