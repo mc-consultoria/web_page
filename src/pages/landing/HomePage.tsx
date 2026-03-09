@@ -389,7 +389,7 @@ function TeamSection2() {
       <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
         <p className="uppercase font-semibold text-blue-500 mb-2">Nuestro Equipo</p>
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-          Conoce a Nuestro Equipo Estratégico
+          Nuestro Equipo de Profesionales
         </h1>
       </div>
 
