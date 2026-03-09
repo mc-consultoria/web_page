@@ -31,6 +31,8 @@ import team6 from "../../assets/team6.png";
 import team7 from "../../assets/team7.png";
 import team8 from "../../assets/team8.jpg";
 import team9 from "../../assets/team9.jpg";
+import team10 from "../../assets/team10.jpg";
+import team11 from "../../assets/team11.jpeg";
 
 import perumin1 from "../../assets/perumin1.jpg";
 import perumin2 from "../../assets/perumin2.jpg";
@@ -103,7 +105,7 @@ function ProjectsSection({ about1 }: { about1: string }) {
         "Durante el proyecto, analizamos y validamos datos críticos de producción y recursos, generando información confiable que permitirá optimizar procesos y mejorar la toma de decisiones estratégicas.",
     },
     {
-      title: "Automatización y análitica en BD geológica",
+      title: "Automatización y Análitica en BD geológica",
       image: project3,
       description:
         "Se realizó la integración y el análisis de datos geológicos para automatizar el proceso e identificar puntos de mejora, con el fin de importarlos automáticamente en un software de modelado.",
@@ -280,7 +282,7 @@ function TeamSection() {
   return (
     <section className="py-16 md:py-20 bg-white">
       <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
-        <p className="uppercase font-semibold text-blue-500 mb-2">Nuestro Equipo</p>
+        <p className="uppercase font-semibold text-blue-500 mb-2">Nuestros Asociados</p>
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
           Conoce a nuestros Asociados
         </h1>
@@ -310,8 +312,117 @@ function TeamSection() {
         </button>
       </div>
     </section>
+
+    //Conoce a nuestro equipo estrategico
+    
   );
 }
+
+function TeamSection2() {
+  const [showAll, setShowAll] = useState<boolean>(false);
+
+  const cards: TeamCard[] = [
+    {
+      img: mc1,
+      name: "Marcos Calderon",
+      role: "CEO & Founder",
+      linkedin: "https://www.linkedin.com/in/marcos-s-calder%C3%B3n-aran%C3%ADbar-a07283140/",
+    },
+    {
+      img: team11,
+      name: "Aaron Calderón",
+      role: "Ing. Minas - Consultor Junior de Planeamiento",
+      linkedin: "https://www.linkedin.com/in/aaron-calderon-cumpa-43a42916b/",
+    },
+    {
+      img: team10,
+      name: "Claudio Moncada",
+      role: "Ing. Geológica - Asistente de Geología",
+      linkedin: "https://www.linkedin.com/in/claudio-moncada-romani-003150168/",
+    },
+    /*{
+      img: team10,
+      name: "Edu Andia",
+      role: "Consultor Senior Procesos Metalúrgicos",
+      linkedin: "https://www.linkedin.com/in/edu-andia-carpio-19b19a255/",
+    },*/
+    {
+      img: team9,
+      name: "Sofia Quispe",
+      role: "Ing. de Sistemas, Análitica de Datos y Automatización de Procesos",
+      linkedin: "https://www.linkedin.com/in/sofia-quispe-salas/",
+    },
+  ];
+
+  const Card = ({ c }: { c: TeamCard }) => (
+    <div className="shadow-lg rounded-lg overflow-hidden">
+      <img src={c.img} alt={c.name} className="w-full h-56 sm:h-60 md:h-64 object-cover" loading="lazy" />
+      <div className="flex items-center bg-gray-100 p-3 sm:p-4 relative group overflow-hidden">
+        <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-blue-500 flex items-center justify-center relative z-10 rounded-md">
+          <FaEnvelope className="text-white text-xl sm:text-2xl" />
+        </div>
+        <div className="flex-1 pl-3 sm:pl-4 relative z-10">
+          <h5 className="font-bold text-base sm:text-lg">{c.name}</h5>
+          <span className="text-blue-500 text-xs sm:text-sm">{c.role}</span>
+        </div>
+
+        {c.linkedin && (
+          <div className="absolute inset-0 bg-blue-600/50 flex items-center translate-x-0 md:translate-x-[-100%] md:group-hover:translate-x-0 transition-transform duration-500 ease-out z-20">
+            <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center ml-[20px]">
+              <a
+                href={c.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 flex items-center justify-center"
+              >
+                <FaLinkedinIn className="text-white text-base sm:text-lg" />
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  return (
+    <section className="py-16 md:py-20 bg-white">
+      <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
+        <p className="uppercase font-semibold text-blue-500 mb-2">Nuestro Equipo</p>
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+          Conoce a Nuestro Equipo Estratégico
+        </h1>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        {cards.slice(0, 3).map((c: TeamCard, i: number) => (
+          <Card key={`team-top-${i}`} c={c} />
+        ))}
+      </div>
+
+      <div
+        className={`${showAll ? "grid" : "hidden"} grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto mt-6 md:mt-8`}
+      >
+        {cards.slice(3).map((c: TeamCard, i: number) => (
+          <Card key={`team-rest-${i}`} c={c} />
+        ))}
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <button
+          onClick={() => setShowAll((v: boolean) => !v)}
+          className="px-5 py-2.5 rounded-md bg-[#01395c] text-white text-sm md:text-base hover:bg-[#02507f] transition"
+          aria-expanded={showAll}
+        >
+          {showAll ? "Ver menos" : "Ver más"}
+        </button>
+      </div>
+    </section>
+
+    //Conoce a nuestro equipo estrategico
+    
+  );
+}
+
 
 export default function HomePage() {
   const facts: FactItem[] = [
@@ -353,7 +464,7 @@ export default function HomePage() {
       type: "Ponencia",
       date: "Nov 2025",
       city: "Arequipa, PE",
-      title: "Ponencia en universidad continental: CONTIMIN",
+      title: "Ponencia en universidad Continental: CONTIMIN",
       summary: "Exposición de casos y buenas prácticas en reconciliación minera.",
       points: [
         "Desafíos actuales de la industria",
@@ -978,7 +1089,7 @@ export default function HomePage() {
 
       {/* ✅ Team (sin hooks dentro de IIFE + tipado) */}
       <TeamSection />
-
+      <TeamSection2 />
       {/* CTA Section */}
       <section className="py-20 text-white" style={{ backgroundColor: "#3f9dc8" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
