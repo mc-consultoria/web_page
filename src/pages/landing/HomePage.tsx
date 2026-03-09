@@ -331,13 +331,13 @@ function TeamSection2() {
     {
       img: team11,
       name: "Aaron Calderón",
-      role: "Ing. Minas - Consultor Junior de Planeamiento",
+      role: "Ing. Minas - Consultor de Planeamiento",
       linkedin: "https://www.linkedin.com/in/aaron-calderon-cumpa-43a42916b/",
     },
     {
       img: team10,
       name: "Claudio Moncada",
-      role: "Ing. Geológica - Asistente de Geología",
+      role: "Ing. Geológica - Consultor de Geología",
       linkedin: "https://www.linkedin.com/in/claudio-moncada-romani-003150168/",
     },
     /*{
