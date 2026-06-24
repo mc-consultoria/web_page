@@ -51,6 +51,7 @@ import unsa4 from "../../assets/unsa4.jpg";
 
 import pucp from "../../assets/pucp.png";
 
+import empresa1 from "../../assets/empresa1.jpg";
 import empresa2 from "../../assets/empresa2.png";
 import empresa3 from "../../assets/empresa3.png";
 import empresa4 from "../../assets/empresa4.png";
@@ -345,16 +346,17 @@ function ClientsCarouselSection() {
 
   // Array de logos de empresas que confían en nosotros
   const companies = [
-    { id: 1, name: "Empresa 2", logo: empresa2 },
-    { id: 2, name: "Empresa 3", logo: empresa3 },
-    { id: 3, name: "Empresa 4", logo: empresa4 },
-    { id: 4, name: "Empresa 5", logo: empresa5 },
-    { id: 5, name: "Empresa 6", logo: empresa6 },
-    { id: 6, name: "Empresa 7", logo: empresa7 },
-    { id: 7, name: "Empresa 8", logo: empresa8 },
-    { id: 8, name: "Empresa 9", logo: empresa9 },
-    { id: 9, name: "Empresa 10", logo: empresa10 },
-    { id: 10, name: "Empresa 11", logo: empresa11 },
+    { id: 1, name: "Empresa 1", logo: empresa1 },
+    { id: 2, name: "Empresa 2", logo: empresa2 },
+    { id: 3, name: "Empresa 3", logo: empresa3 },
+    { id: 4, name: "Empresa 4", logo: empresa4 },
+    { id: 5, name: "Empresa 5", logo: empresa5 },
+    { id: 6, name: "Empresa 6", logo: empresa6 },
+    { id: 7, name: "Empresa 7", logo: empresa7 },
+    { id: 8, name: "Empresa 8", logo: empresa8 },
+    { id: 9, name: "Empresa 9", logo: empresa9 },
+    { id: 10, name: "Empresa 10", logo: empresa10 },
+    { id: 11, name: "Empresa 11", logo: empresa11 },
   ];
 
   const itemsPerPage = 3;
