@@ -683,7 +683,7 @@ export default function HomePage() {
       id: 5,
       category: "AusIMM",
       type: "Conferencia / Networking",
-      date: "2025",
+      date: "2026",
       city: "Perú",
       title: "Participación en AusIMM",
       summary:
@@ -703,7 +703,7 @@ export default function HomePage() {
       id: 6,
       category: "ProExplo",
       type: "Conferencia / Exposición",
-      date: "2025",
+      date: "2026",
       city: "Perú",
       title: "Participación en ProExplo",
       summary:
