@@ -6,6 +6,8 @@ import {
   Briefcase,
   TrendingUp,
   CheckCircle,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import videoBg from "../../assets/video3.mp4";
 import { motion } from "framer-motion";
@@ -48,6 +50,25 @@ import unsa3 from "../../assets/unsa3.jpg";
 import unsa4 from "../../assets/unsa4.jpg";
 
 import pucp from "../../assets/pucp.png";
+
+import empresa2 from "../../assets/empresa2.png";
+import empresa3 from "../../assets/empresa3.png";
+import empresa4 from "../../assets/empresa4.png";
+import empresa5 from "../../assets/empresa5.png";
+import empresa6 from "../../assets/empresa6.png";
+import empresa7 from "../../assets/empresa7.png";
+import empresa8 from "../../assets/empresa8.jpg";
+import empresa9 from "../../assets/empresa9.jpg";
+import empresa10 from "../../assets/empresa10.png";
+import empresa11 from "../../assets/empresa11.png";
+
+import aussim1 from "../../assets/aussim1.jpg";
+import aussim2 from "../../assets/aussim2.jpg";
+
+import ProExplo1 from "../../assets/ProExplo1.jpg";
+import ProExplo2 from "../../assets/ProExplo2.jpg";
+import ProExplo3 from "../../assets/ProExplo3.jpg";
+import ProExplo4 from "../../assets/ProExplo4.jpg";
 
 import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 
@@ -318,6 +339,144 @@ function TeamSection() {
   );
 }
 
+function ClientsCarouselSection() {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [autoPlay, setAutoPlay] = useState<boolean>(true);
+
+  // Array de logos de empresas que confían en nosotros
+  const companies = [
+    { id: 1, name: "Empresa 2", logo: empresa2 },
+    { id: 2, name: "Empresa 3", logo: empresa3 },
+    { id: 3, name: "Empresa 4", logo: empresa4 },
+    { id: 4, name: "Empresa 5", logo: empresa5 },
+    { id: 5, name: "Empresa 6", logo: empresa6 },
+    { id: 6, name: "Empresa 7", logo: empresa7 },
+    { id: 7, name: "Empresa 8", logo: empresa8 },
+    { id: 8, name: "Empresa 9", logo: empresa9 },
+    { id: 9, name: "Empresa 10", logo: empresa10 },
+    { id: 10, name: "Empresa 11", logo: empresa11 },
+  ];
+
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(companies.length / itemsPerPage);
+
+  useEffect(() => {
+    if (!autoPlay) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalPages);
+    }, 4000); // Cambia cada 4 segundos
+
+    return () => clearInterval(interval);
+  }, [autoPlay, totalPages]);
+
+  const goToPrevious = () => {
+    setAutoPlay(false);
+    setCurrentIndex((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setAutoPlay(false);
+    setCurrentIndex((prev) => (prev + 1) % totalPages);
+  };
+
+  const goToPage = (page: number) => {
+    setAutoPlay(false);
+    setCurrentIndex(page);
+  };
+
+  const visibleCompanies = companies.slice(
+    currentIndex * itemsPerPage,
+    currentIndex * itemsPerPage + itemsPerPage
+  );
+
+  return (
+    <section className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <p className="uppercase font-semibold mb-2" style={{ color: "#3f9dc8" }}>
+            Nuestros Clientes
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            Empresas que confían en nosotros
+          </h2>
+          <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
+            Trabajamos con las empresas mineras más importantes del país
+          </p>
+        </div>
+
+        <div className="relative">
+          {/* Botón anterior */}
+          <button
+            onClick={goToPrevious}
+            onMouseEnter={() => setAutoPlay(false)}
+            onMouseLeave={() => setAutoPlay(true)}
+            className="absolute left-0 top-1/3 z-10 p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition -translate-y-1/2"
+          >
+            <ChevronLeft size={24} style={{ color: "#3f9dc8" }} />
+          </button>
+
+          {/* Carrusel principal - 3 logos */}
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 px-12"
+          >
+            {visibleCompanies.map((company) => (
+              <div
+                key={company.id}
+                className="flex items-center justify-center bg-white rounded-2xl shadow-lg border border-gray-200 p-6 h-48 hover:shadow-xl transition"
+              >
+                <img
+                  src={company.logo}
+                  alt={company.name}
+                  className="max-h-full max-w-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Botón siguiente */}
+          <button
+            onClick={goToNext}
+            onMouseEnter={() => setAutoPlay(false)}
+            onMouseLeave={() => setAutoPlay(true)}
+            className="absolute right-0 top-1/3 z-10 p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition -translate-y-1/2"
+          >
+            <ChevronRight size={24} style={{ color: "#3f9dc8" }} />
+          </button>
+        </div>
+
+        {/* Indicadores */}
+        <div className="flex justify-center gap-2 mt-8">
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToPage(index)}
+              className={`h-3 rounded-full transition-all ${
+                index === currentIndex
+                  ? "w-8 bg-[#3f9dc8]"
+                  : "w-3 bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Ir a página ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Contador */}
+        <div className="text-center mt-6">
+          <p className="text-gray-600 font-medium">
+            {currentIndex + 1} / {totalPages}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function TeamSection2() {
   const [showAll, setShowAll] = useState<boolean>(false);
 
@@ -437,6 +596,7 @@ export default function HomePage() {
   const [newsFilter, setNewsFilter] = useState<string>("Todo");
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [currentImage, setCurrentImage] = useState<number>(0);
+  const [showAllNews, setShowAllNews] = useState<boolean>(false);
 
   const newsItems: NewsItem[] = [
     {
@@ -516,6 +676,46 @@ export default function HomePage() {
       attendees: 60,
       image: pucp,
       images: [pucp],
+      link: "",
+      highlight: false,
+    },
+    {
+      id: 5,
+      category: "AusIMM",
+      type: "Conferencia / Networking",
+      date: "2025",
+      city: "Perú",
+      title: "Participación en AusIMM",
+      summary:
+        "Participación activa en eventos de la Asociación Australiana de Ingenieros de Minas y Metalurgia.",
+      points: [
+        "Compartir experiencias técnicas en la industria minera",
+        "Networking con profesionales del sector",
+        "Presentación de soluciones innovadoras",
+      ],
+      attendees: 0,
+      image: aussim1,
+      images: [aussim1, aussim2],
+      link: "",
+      highlight: false,
+    },
+    {
+      id: 6,
+      category: "ProExplo",
+      type: "Conferencia / Exposición",
+      date: "2025",
+      city: "Perú",
+      title: "Participación en ProExplo",
+      summary:
+        "Presencia en la conferencia y exposición de exploración minera más importante del Perú.",
+      points: [
+        "Exhibición de tecnologías y servicios de exploración",
+        "Sesiones técnicas sobre estimación de recursos",
+        "Networking con empresas exploratorias",
+      ],
+      attendees: 0,
+      image: ProExplo1,
+      images: [ProExplo1, ProExplo2, ProExplo3, ProExplo4],
       link: "",
       highlight: false,
     },
@@ -762,7 +962,7 @@ export default function HomePage() {
 
             <div className="w-full md:w-auto">
               <div className="bg-white rounded-2xl shadow-sm border p-2 flex gap-2 overflow-x-auto">
-                {["Todo", "Universidades", "Perumin"].map((tag: string) => (
+                {["Todo", "Universidades", "Perumin", "AusIMM", "ProExplo"].map((tag: string) => (
                   <button
                     key={tag}
                     onClick={() => setNewsFilter(tag)}
@@ -796,6 +996,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {newsItems
                   .filter((n: NewsItem) => newsFilter === "Todo" || n.category === newsFilter)
+                  .slice(0, showAllNews ? undefined : 2)
                   .map((item: NewsItem, idx: number) => (
                     <motion.article
                       key={item.id}
@@ -883,6 +1084,19 @@ export default function HomePage() {
                     </motion.article>
                   ))}
               </div>
+
+              {/* Botón Ver más / Ver menos */}
+              {newsItems.filter((n: NewsItem) => newsFilter === "Todo" || n.category === newsFilter)
+                .length > 2 && (
+                <div className="flex justify-center mt-8">
+                  <button
+                    onClick={() => setShowAllNews(!showAllNews)}
+                    className="px-6 py-3 rounded-lg bg-[#3f9dc8] text-white font-semibold hover:bg-[#02507f] transition"
+                  >
+                    {showAllNews ? "Ver menos" : "Ver más"}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -1083,6 +1297,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ✅ Clients Carousel */}
+      <ClientsCarouselSection />
 
       {/* ✅ Projects (sin hooks dentro de IIFE) */}
       <ProjectsSection about1={about1} />
