@@ -23,6 +23,7 @@ import service3 from "../../assets/service-3.jpg";
 import project1 from "../../assets/project-1.jpg";
 import project2 from "../../assets/project-2.jpg";
 import project3 from "../../assets/project-3.png";
+import geologia_estructural from "../../assets/geologia_estructural.jpg";
 
 import mc1 from "../../assets/mc1.jpeg";
 import team2 from "../../assets/mc2.jpeg";
@@ -112,6 +113,9 @@ type TeamCard = {
 
 function ProjectsSection({ about1 }: { about1: string }) {
   const [selected, setSelected] = useState<Project | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [autoPlay, setAutoPlay] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
 
   const projects: Project[] = [
     {
@@ -132,37 +136,141 @@ function ProjectsSection({ about1 }: { about1: string }) {
       description:
         "Se realizó la integración y el análisis de datos geológicos para automatizar el proceso e identificar puntos de mejora, con el fin de importarlos automáticamente en un software de modelado.",
     },
+    {
+      title: "Geología Estructural",
+      image: geologia_estructural,
+      description:
+        "Análisis detallado de estructuras geológicas para optimizar la exploración y evaluación de yacimientos. Utilizamos técnicas avanzadas de mapeo y modelamiento 3D para caracterizar la arquitectura geológica de depósitos mineros.",
+    },
   ];
+
+  const itemsPerPage = 2;
+  const totalPages = Math.ceil(projects.length / itemsPerPage);
+
+  // Detectar cambios de tamaño de pantalla
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Auto-play solo en desktop
+  useEffect(() => {
+    if (!autoPlay || isMobile) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalPages);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [autoPlay, totalPages, isMobile]);
+
+  const goToPrevious = () => {
+    setAutoPlay(false);
+    setCurrentIndex((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setAutoPlay(false);
+    setCurrentIndex((prev) => (prev + 1) % totalPages);
+  };
+
+  const goToPage = (page: number) => {
+    setAutoPlay(false);
+    setCurrentIndex(page);
+  };
+
+  const visibleProjects = projects.slice(
+    currentIndex * itemsPerPage,
+    currentIndex * itemsPerPage + itemsPerPage
+  );
 
   return (
     <section className="bg-[#01395c] py-16 px-6">
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-3xl mx-auto text-center mb-12">
         <p className="uppercase font-semibold text-blue-400 mb-2">Nuestros Proyectos</p>
-        <h1 className="text-4xl font-bold text-white mb-10">
+        <h1 className="text-4xl font-bold text-white">
           Conozca Nuestros Proyectos Recientes
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {projects.map((proj, index) => (
-          <div
-            key={index}
-            className="relative group cursor-pointer"
-            onClick={() => setSelected(proj)}
-          >
-            <img
-              src={proj.image}
-              alt={proj.title}
-              className="w-full h-72 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-              <h5 className="text-white text-xl font-semibold px-4 text-center">
-                {proj.title}
-              </h5>
+      <div className="relative max-w-6xl mx-auto">
+        {/* Botón anterior */}
+        <button
+          onClick={goToPrevious}
+          onMouseEnter={() => setAutoPlay(false)}
+          onMouseLeave={() => setAutoPlay(true)}
+          className="absolute left-0 top-1/3 z-10 p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition -translate-y-1/2"
+        >
+          <ChevronLeft size={24} style={{ color: "#01395c" }} />
+        </button>
+
+        {/* Carrusel - 2 proyectos */}
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 px-12"
+        >
+          {visibleProjects.map((proj, index) => (
+            <div
+              key={index}
+              className="relative group cursor-pointer"
+              onClick={() => {
+                setSelected(proj);
+              }}
+            >
+              <img
+                src={proj.image}
+                alt={proj.title}
+                className="w-full h-64 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-lg">
+                <h5 className="text-white text-lg font-semibold px-4 text-center">
+                  {proj.title}
+                </h5>
+              </div>
             </div>
-          </div>
+          ))}
+        </motion.div>
+
+        {/* Botón siguiente */}
+        <button
+          onClick={goToNext}
+          onMouseEnter={() => setAutoPlay(false)}
+          onMouseLeave={() => setAutoPlay(true)}
+          className="absolute right-0 top-1/3 z-10 p-2 rounded-full bg-white shadow-lg hover:shadow-xl transition -translate-y-1/2"
+        >
+          <ChevronRight size={24} style={{ color: "#01395c" }} />
+        </button>
+      </div>
+
+      {/* Indicadores */}
+      <div className="flex justify-center gap-2 mt-8">
+        {Array.from({ length: totalPages }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToPage(index)}
+            className={`h-3 rounded-full transition-all ${
+              index === currentIndex
+                ? "w-8 bg-white"
+                : "w-3 bg-gray-400 hover:bg-gray-300"
+            }`}
+            aria-label={`Ir a página ${index + 1}`}
+          />
         ))}
+      </div>
+
+      {/* Contador */}
+      <div className="text-center mt-4">
+        <p className="text-gray-300 font-medium">
+          {currentIndex + 1} / {totalPages}
+        </p>
       </div>
 
       {/* Modal Detalle del Proyecto */}
